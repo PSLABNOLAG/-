@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PSLAB — Правила оказания услуг</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Playfair+Display:wght@400;700;900&family=Roboto+Condensed:wght@400;700&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#d4a843;--gold-bright:#f0d78c;--gold-dark:#8b6914;--bg:#0a0a0a;--bg2:#111;--text:#ccc;--text-dim:#666}
+body{background:var(--bg);font-family:'Montserrat',sans-serif;color:var(--text);line-height:1.6}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(10,10,10,.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,168,67,.15);padding:12px 30px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.nav-brand{font-family:'Roboto Condensed',sans-serif;font-weight:900;font-size:16px;letter-spacing:5px;color:var(--gold);text-transform:uppercase}
+.nav-links{display:flex;gap:18px;flex-wrap:wrap}
+.nav-links a{color:var(--text-dim);text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:600;transition:all .3s;padding:4px 0;border-bottom:1px solid transparent}
+.nav-links a:hover{color:var(--gold);border-bottom-color:var(--gold)}
+.nav-scroll-progress{position:absolute;bottom:0;left:0;height:2px;background:linear-gradient(90deg,var(--gold-dark),var(--gold-bright),var(--gold-dark));width:0%;transition:width 0.1s linear}
+
+/* COVER */
+.cover{position:relative;min-height:45vh;background:linear-gradient(160deg,#000 0%,#0d0d0d 25%,#1a1408 50%,#0a0a05 100%);display:flex;align-items:center;justify-content:center;overflow:hidden;border-bottom:3px solid var(--gold)}
+.cover::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 25%,rgba(212,168,67,.15) 0%,transparent 50%),radial-gradient(ellipse at 20% 75%,rgba(212,168,67,.07) 0%,transparent 45%),radial-gradient(ellipse at 80% 40%,rgba(212,168,67,.05) 0%,transparent 45%),radial-gradient(ellipse at 50% 90%,rgba(212,168,67,.04) 0%,transparent 40%)}
+.cover::after{content:'';position:absolute;inset:0;background:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22 viewBox=%220 0 100 100%22%3E%3Cpath d=%22M10 50 L50 10 L90 50 L50 90 Z%22 fill=%22none%22 stroke=%22rgba(212,168,67,0.03)%22 stroke-width=%221%22/%3E%3C/svg%3E') repeat;opacity:0.5;z-index:1}
+.cover-content{position:relative;z-index:2;text-align:center;padding:60px 40px}
+.cover-brand{font-family:'Roboto Condensed',sans-serif;font-size:72px;font-weight:400;letter-spacing:16px;color:#b8952e;margin-bottom:15px;text-transform:uppercase;text-shadow:0 0 40px rgba(184,149,46,0.35)}
+.cover h1{font-family:'Playfair Display',serif;font-size:52px;font-weight:900;line-height:.85;background:linear-gradient(180deg,var(--gold-bright) 0%,var(--gold) 40%,var(--gold-dark) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:5px;text-shadow:none;filter:drop-shadow(0 0 60px rgba(212,168,67,0.15))}
+.cover h1 .small{font-size:28px;display:block;letter-spacing:10px;font-weight:700}
+.cover-divider{width:280px;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 40px;border-radius:2px;position:relative}
+.cover-divider::before{content:'◆';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:var(--gold);font-size:14px}
+.cover-subtitle{font-size:14px;letter-spacing:4px;color:var(--gold);opacity:.7;text-transform:uppercase;font-weight:600}
+.cover-back-btn{display:inline-block;margin-top:25px;cursor:pointer;color:var(--gold-bright)!important;text-decoration:none;font-weight:700;background:linear-gradient(135deg,rgba(212,168,67,.2),rgba(212,168,67,.05));border:1.5px solid rgba(212,168,67,.5);padding:9px 26px;border-radius:25px;transition:all .3s ease;font-size:12px;letter-spacing:3px;text-transform:uppercase}
+.cover-back-btn:hover{background:linear-gradient(135deg,rgba(212,168,67,.35),rgba(212,168,67,.12));border-color:var(--gold-bright);box-shadow:0 0 20px rgba(212,168,67,.3);transform:translateY(-2px)}
+
+/* CONTENT */
+.rules-container{max-width:900px;margin:0 auto;padding:50px 30px 80px}
+
+/* TOC */
+.toc{background:linear-gradient(160deg,var(--bg2) 0%,#0d0d0d 100%);border:1px solid rgba(212,168,67,.15);border-radius:16px;padding:30px 35px;margin-bottom:50px}
+.toc h3{font-family:'Playfair Display',serif;font-size:24px;color:var(--gold);margin-bottom:20px;text-align:center}
+.toc ol{list-style:none;counter-reset:toc-counter;padding:0}
+.toc ol li{counter-increment:toc-counter;margin-bottom:8px}
+.toc ol li a{color:var(--text);text-decoration:none;font-size:13px;letter-spacing:1px;transition:all .3s;display:flex;align-items:center;gap:12px;padding:6px 0}
+.toc ol li a::before{content:counter(toc-counter) ".";color:var(--gold);font-weight:700;font-size:16px;min-width:28px;text-align:right}
+.toc ol li a:hover{color:var(--gold-bright)}
+
+/* SECTIONS */
+.rules-section{margin-bottom:50px;scroll-margin-top:100px}
+.rules-section .section-number{font-family:'Playfair Display',serif;font-size:18px;color:var(--gold);opacity:.5;letter-spacing:3px;margin-bottom:5px}
+.rules-section h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--gold);margin-bottom:10px;letter-spacing:-.5px}
+.rules-section .section-line{width:60px;height:3px;background:var(--gold);margin-bottom:25px;border-radius:2px}
+.rules-section .rule-block{background:linear-gradient(135deg,var(--bg2) 0%,#0d0d0d);border:1px solid rgba(255,255,255,.03);border-radius:14px;padding:25px 30px;margin-bottom:16px;transition:all .3s;border-left:3px solid transparent}
+.rules-section .rule-block:hover{border-left-color:var(--gold);border-color:rgba(212,168,67,.15)}
+.rules-section .rule-block h4{font-size:14px;font-weight:700;color:var(--gold-bright);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+.rules-section .rule-block p,
+.rules-section .rule-block li{font-size:13px;color:#bbb;line-height:1.8;margin-bottom:6px}
+.rules-section .rule-block ul,
+.rules-section .rule-block ol{margin:8px 0 8px 20px}
+.rules-section .rule-block ul{list-style:none}
+.rules-section .rule-block ul li::before{content:'◆';color:var(--gold);font-size:8px;margin-right:10px;vertical-align:middle}
+.rules-section .rule-block .highlight{color:var(--gold-bright);font-weight:600}
+.rules-section .rule-block .warn{color:#ff6b6b;font-weight:600}
+
+/* IMPORTANT BOX */
+.important-box{background:linear-gradient(135deg,rgba(212,168,67,.08),rgba(212,168,67,.02));border:1px solid rgba(212,168,67,.3);border-radius:14px;padding:25px 30px;margin:25px 0 50px;text-align:center}
+.important-box h3{font-family:'Playfair Display',serif;font-size:20px;color:var(--gold-bright);margin-bottom:10px}
+.important-box p{font-size:13px;color:var(--text);line-height:1.8}
+
+/* SUB-SECTION */
+.sub-block{background:transparent;border:1px solid rgba(255,255,255,.05);border-radius:12px;padding:20px 25px;margin:12px 0}
+.sub-block h5{font-size:12px;font-weight:700;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.sub-block p{font-size:12px;color:#999;line-height:1.8}
+
+/* FOOTER */
+.footer{text-align:center;padding:60px 20px;border-top:1px solid rgba(212,168,67,.1);max-width:900px;margin:0 auto}
+.footer h3{font-family:'Roboto Condensed',sans-serif;font-size:16px;letter-spacing:8px;color:var(--gold);margin-bottom:15px}
+.footer p{color:#444;font-size:12px;letter-spacing:2px}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .cover{min-height:35vh}
+  .cover-brand{font-size:32px;letter-spacing:6px}
+  .cover h1{font-size:30px}
+  .cover h1 .small{font-size:16px;letter-spacing:4px}
+  .cover-subtitle{font-size:11px;letter-spacing:2px}
+  .cover-divider{width:160px}
+  .cover-content{padding:30px 20px}
+  .nav{padding:10px 15px}
+  .nav-links{gap:8px}
+  .nav-links a{font-size:9px;letter-spacing:1px}
+  .rules-container{padding:30px 15px 60px}
+  .rules-section h2{font-size:24px}
+  .rules-section .rule-block{padding:18px 20px}
+  .toc{padding:20px}
+}
+
+/* ANIMATIONS */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+.cover-content > *{animation:fadeInUp 0.8s ease forwards;opacity:0}
+.cover-content .cover-brand{animation-delay:0.1s}
+.cover-content h1{animation-delay:0.25s}
+.cover-content .cover-divider{animation-delay:0.4s}
+.cover-content .cover-subtitle{animation-delay:0.55s}
+
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:#0a0a0a}
+::-webkit-scrollbar-thumb{background:var(--gold-dark);border-radius:4px}
+
+/* SCROLL REVEAL */
+.reveal-ready{opacity:0;transform:translateY(30px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal-show{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav">
+  <a href="index.html" class="nav-brand" style="text-decoration:none;">🏆 PSLAB</a>
+  <div class="nav-links">
+    <a href="index.html">🎮 Каталог</a>
+    <a href="index.html#cat-sport">⚽ Спорт</a>
+    <a href="index.html#cat-race">🏎️ Гонки</a>
+    <a href="index.html#cat-action">💥 Экшены</a>
+    <a href="price.html">💰 Прайс</a>
+    <a href="rules.html" style="color:var(--gold-bright);">📜 Правила</a>
+  </div>
+</div>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-content">
+    <div class="cover-brand">PSLAB</div>
+    <h1><span class="small">Правила</span>оказания услуг</h1>
+    <div class="cover-divider"></div>
+    <div class="cover-subtitle">Прочитайте перед бронированием</div>
+    <a href="index.html" class="cover-back-btn">🎮 На главную</a>
+  </div>
+</div>
+
+<!-- RULES -->
+<div class="rules-container">
+
+  <!-- TOC -->
+  <div class="toc reveal-ready">
+    <h3>📋 Содержание</h3>
+    <ol>
+      <li><a href="#sec1">Регистрация и бронирование</a></li>
+      <li><a href="#sec2">Количество гостей</a></li>
+      <li><a href="#sec3">Правила поведения</a></li>
+      <li><a href="#sec4">Туалет</a></li>
+      <li><a href="#sec5">Видеонаблюдение и безопасность</a></li>
+      <li><a href="#sec6">Климат и очистка воздуха</a></li>
+      <li><a href="#sec7">Уровень громкости</a></li>
+      <li><a href="#sec8">Обувь и одежда</a></li>
+      <li><a href="#sec9">Время начала и окончания сессии</a></li>
+      <li><a href="#sec10">Техника и оборудование</a></li>
+      <li><a href="#sec11">Техническая поддержка и самообслуживание</a></li>
+      <li><a href="#sec12">Геймпады (джойстики) и гарантийный платёж</a></li>
+      <li><a href="#sec13">Система скидок и статусов</a></li>
+      <li><a href="#sec14">Ответственность</a></li>
+      <li><a href="#sec15">Технические сбои</a></li>
+      <li><a href="#sec16">Перенос и отмена</a></li>
+    </ol>
+  </div>
+
+  <!-- ВАЖНО -->
+  <div class="important-box reveal-ready">
+    <h3>⚠️ Важно</h3>
+    <p>Соглашаясь с настоящими Правилами (в том числе путём оплаты), клиент даёт согласие на обработку своих персональных данных (ФИО, дата рождения, номер телефона, а при расширенной регистрации — также фото паспорта и фото лица с паспортом) в целях регистрации, бронирования и оказания услуги PS LAB. Полную материальную и юридическую ответственность за всё происходящее во время оказания услуги несёт лицо, которое забронировало услугу и получило код доступа.</p>
+  </div>
+
+  <!-- СЕКЦИЯ 1 -->
+  <div class="rules-section reveal-ready" id="sec1">
+    <div class="section-number">Раздел 1</div>
+    <h2>Регистрация и бронирование</h2>
+    <div class="section-line"></div>
+
+    <div class="rule-block">
+      <h4>📍 Возраст</h4>
+      <ul>
+        <li>Услуга предоставляется лицам, достигшим возраста <span class="highlight">16 лет</span>. Лица младше 16 лет допускаются только в сопровождении совершеннолетнего, который оформил бронирование и несёт полную ответственность за несовершеннолетнего и за всё происходящее во время оказания услуги.</li>
+        <li>В качестве исключения лица младше 16 лет могут находиться в помещении, если услугу заказал совершеннолетний родитель или законный представитель. Он несёт полную ответственность за всех несовершеннолетних участников и за сохранность имущества. Администрация вправе в любой момент потребовать его присутствия или досрочно прекратить сессию без возврата внесённой оплаты за услугу, если поведение участников создаёт риск повреждения имущества или нарушения порядка.</li>
+      </ul>
+    </div>
+
+    <div class="rule-block">
+      <h4>📝 Регистрация</h4>
+      <ul>
+        <li>Для первого бронирования обязательна регистрация. Регистрация производится через SMS на номер <span class="highlight">8909-820-31-31</span> либо через VK / MAX / Telegram.</li>
+        <li>Чтобы начать регистрацию или бронирование, клиент самостоятельно пишет сообщение или звонит и указывает цель обращения, например:
+          <ul>
+            <li>«Хочу пройти регистрацию»</li>
+            <li>«Хочу зарегистрироваться и забронировать»</li>
+            <li>«Хочу забронировать» (если регистрация уже пройдена)</li>
+            <li>«Хочу пройти расширенную регистрацию и получить привилегии»</li>
+          </ul>
+        </li>
+      </ul>
+      <p>Клиент может выбрать один из двух способов регистрации:</p>
+      <ol>
+        <li><span class="highlight">Упрощённая регистрация.</span> С использованием номера телефона. Клиент указывает полное Ф.И.О., дату рождения и номер телефона.</li>
+        <li><span class="highlight">Расширенная регистрация (добровольно).</span> Клиент указывает полное Ф.И.О., дату рождения, номер телефона и дополнительно предоставляет:
+          <ul>
+            <li>фото разворота паспорта (лицевая сторона и прописка);</li>
+            <li>фото лица с паспортом.</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+
+    <div class="rule-block">
+      <h4>⭐ Расширенная регистрация: статус «Особый гость»</h4>
+      <p>При выборе расширенной регистрации клиент сразу после её прохождения получает статус <span class="highlight">Особый гость</span> и следующие преимущества, которые начинают действовать немедленно:</p>
+      <ul>
+        <li>постоянную скидку <span class="highlight">10%</span> на все услуги PS LAB;</li>
+        <li>повышенный приоритет при бронировании по сравнению с пользователями, прошедшими только упрощённую регистрацию;</li>
+        <li>автоматическое участие в программе VIP-гость при соблюдении Правил, что открывает возможность получить статус VIP-гость, постоянную несгораемую скидку 20%, наивысший приоритет при бронировании и дополнительные привилегии (условия — см. пункт 13 настоящих Правил);</li>
+        <li>возможность получать дополнительные бонусы и привилегии в будущем.</li>
+      </ul>
+    </div>
+
+    <div class="rule-block">
+      <h4>📱 Номер телефона и подтверждение</h4>
+      <ul>
+        <li>Для регистрации разрешается использовать только личный номер телефона, оформленный на самого клиента. Использование временных, виртуальных, арендованных номеров, а также номеров друзей, родственников и любых третьих лиц запрещено.</li>
+        <li>После получения данных клиенту направляется полный текст Правил.</li>
+        <li>Для подтверждения, что указанный номер телефона принадлежит клиенту, а также для подтверждения согласия с Правилами, клиент должен отправить SMS-сообщение именно с указанного им номера с текстом:</li>
+      </ul>
+      <p style="text-align:center;margin-top:12px;color:var(--gold-bright);font-weight:600;font-size:14px;">«Я, [ФИО], прочитал полностью и согласен с правилами.»</p>
+      <p>После получения такого сообщения регистрация считается завершённой. Клиенту присваивается личный номер и статус (Обычный или Особый гость).</p>
+    </div>
+
+    <div class="rule-block">
+      <h4>🔑 Код доступа</h4>
+      <ul>
+        <li>Код доступа выдаётся клиенту, оформившему бронирование. Передача кода посторонним лицам (не входящим в состав компании, которая забронировала сессию) запрещена. В рамках одной компании передача кода между участниками допускается.</li>
+        <li>Полную ответственность за всё происходящее несёт лицо, которое забронировало и оплатило сессию.</li>
+        <li>При последующих бронированиях повторная регистрация не требуется. Код доступа будет приходить на номер телефона, указанный при первой регистрации.</li>
+        <li>Код доступа действует только в течение оплаченного времени.</li>
+      </ul>
+    </div>
+
+    <div class="rule-block">
+      <h4>💰 Оплата и бронирование</h4>
+      <ul>
+        <li>Бронирование возможно только при <span class="highlight">100% предоплате</span>. Исключения не допускаются.</li>
+        <li>Минимальное время бронирования — <span class="highlight">2 часа</span>. Дробление оплаченного времени не допускается.</li>
+      </ul>
+    </div>
+
+    <div class="rule-block">
+      <h4>🚫 Важные запреты</h4>
+      <ul>
+        <li>Передача кода доступа посторонним лицам, перепродажа или переуступка бронирования запрещены. В случае выявления такой передачи код доступа может быть немедленно аннулирован, сессия прекращается без возврата внесенной оплаты за услугу, а аккаунт блокируется.</li>
+        <li>Администрация вправе в любой момент запросить документ, удостоверяющий личность, у лица, находящегося в помещении. При отказе предъявить документ, предъявлении документа на другое лицо либо при подозрении, что бронирование оформлено на другого человека, сессия может быть немедленно прекращена без возврата внесенной оплаты за услугу, а код доступа аннулирован.</li>
+        <li>Администрация вправе в любой момент запросить документ, удостоверяющий личность, при возникновении сомнений в возрасте клиента, конфликтных ситуациях, для установления личности, а также при подозрении на использование временного, виртуального, арендованного или чужого номера телефона.</li>
+        <li>Соглашаясь с настоящими Правилами (в том числе путём оплаты), клиент даёт согласие на обработку своих персональных данных (ФИО, дата рождения, номер телефона, а при расширенной регистрации — также фото паспорта и фото лица с паспортом) в целях регистрации, бронирования и оказания услуги.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- СЕКЦИЯ 2 -->
+  <div class="rules-section reveal-ready" id="sec2">
+    <div class="section-number">Раздел 2</div>
+    <h2>Количество гостей</h2>
+    <div class="section-line"></div>
+
+    <div class="rule-block">
+      <ul>
+        <li>Базовая стоимость пакета рассчитана на <span class="highlight">4 человека</span>.</li>
+        <li>Каждый дополнительный гость сверх 4 человек оплачивается отдельно: <span class="highlight">+500 ₽ за каждого</span>. Максимум — <span class="highlight">6 человек</span>. Нахождение в помещении более 6 человек запрещено.</li>
+        <li>Непрерывной считается сессия, которая продлевается и оплачивается без выхода гостей из помещения.</li>
+        <li>Если оплаченное время уже истекло, а продление не оформлено, дальнейшее нахождение в помещении является задержкой и не считается непрерывным продлением.</li>
+        <li>Если гости уже покинули помещение, последующее бронирование считается новой сессией.</li>
+        <li>При непрерывном продлении доплата за дополнительных гостей взимается <span class="highlight">только один раз</span> за всю сессию.</li>
+        <li>Продление непрерывной сессии возможно только если следующее время не забронировано другими гостями. Максимальное время продления — до следующей имеющейся брони.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- СЕКЦИЯ 3 -->
+  <div class="rules-section reveal-ready" id="sec3">
+    <div class="section-number">Раздел 3</div>
+    <h2>Правила поведения</h2>
+    <div class="section-line"></div>
+
+    <div class="rule-block">
+      <h4>🧹 Чистота и внешний вид</h4>
+      <ul>
+        <li>Гости обязаны соблюдать чистоту в помещении в течение всего времени пребывания.</li>
+        <li>Клиенты должны иметь опрятный внешний вид и соблюдать правила личной гигиены.</li>
+      </ul>
+    </div>
+
+    <div class="rule-block">
+      <h4>🚫 Администрация вправе отказать</h4>
+      <p>Администрация вправе отказать в оказании услуги лицам:</p>
+      <ul>
+        <li>в состоянии алкогольного или наркотического опьянения;</li>
+        <li>в неадекватном состоянии;</li>
+        <li>с сильным загрязнением одежды или тела;</li>
+        <li>с резким неприятным запахом;</li>
+        <li>а также в случае, если внешний вид или поведение клиента могут создать угрозу имуществу, безопасности, порядку либо помехи соседним помещениям и организациям.</li>
+      </ul>
+    </div>
+
+    <div class="rule-block">
+      <h4>🍺 Алкоголь</h4>
+      <ul>
+        <li>Алкоголь запрещён в общем порядке.</li>
+        <li>Исключение возможно в особых случаях (дни рождения, просмотр важных спортивных событий, праздники и т.д.) — разрешается только <span class="highlight">слабый алкоголь (крепость не более 12%)</span> для лиц старше 21 года по предварительному согласованию с администрацией и с дополнительной оплатой <span class="highlight">2500 ₽ за сессию</span>.</li>
+      </ul>
+    </div>
+
+    <div class="rule-block">
+      <h4>💨 Курение и вейпы</h4>
+      <ul>
+        <li><span class="highlight">Разрешены вейпы.</span></li>
+        <li><span class="warn">Запрещено:</span> сигареты, кальян, любые устройства с тлением/огнём/пеплом, еда с сильным запахом.</li>
+      </ul>
+    </div>
+
+    <div class="rule-block">
+      <h4>🎮 Бережное отношение</h4>
+      <ul>
+        <li><span class="warn">Запрещено</span> трогать джойстики жирными или грязными руками (после еды, чипсов, KFC и т.д.). Сначала вымойте руки или вытрите их.</li>
+        <li>Берегите имущество (техника, мебель, джойстики). Порча имущества запрещена и влечёт ответственность по пункту 14 настоящих Правил.</li>
+        <li>По окончании сессии гости обязаны оставить помещение чистым.</li>
+        <li><span class="warn">Интимные действия в помещении и в туалете запрещены.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- СЕКЦИЯ 4 -->
+  <div class="rules-section reveal-ready" id="sec4">
+    <div class="section-number">Раздел 4</div>
+    <h2>Туалет</h2>
+    <div class="section-line"></div>
+
+    <div class="rule-block">
+      <ul>
+        <li>При пользовании туалетом соблюдайте чистоту.</li>
+        <li>Использованную туалетную бумагу смывайте только в унитаз. Выбрасывать её в корзину запрещено. Не бросайте в унитаз ничего, кроме обычной туалетной бумаги. Влажные салфетки, прокладки, тампоны и любой другой мусор смывать в унитаз запрещено. Оставлять такие предметы в туалете или в помещении запрещено, их следует уносить с собой.</li>
+        <li>В корзину бросайте только бумажные полотенца после вытирания рук.</li>
+        <li>После использования унитаза обязательно спускайте воду и смывайте за собой.</li>
+        <li>При загрязнении унитаза воспользуйтесь ёршиком и оставьте его в чистом состоянии.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- СЕКЦИЯ 5 -->
+  <div class="rules-section reveal-ready" id="sec5">
+    <div class="section-number">Раздел 5</div>
+    <h2>Видеонаблюдение и безопасность</h2>
+    <div class="section-line"></div>
+
+    <div class="rule-block">
+      <ul>
+        <li>Помещение находится под <span class="highlight">круглосуточным видеонаблюдением</span>.</li>
+        <li><span class="warn">Запрещено</span> любым способом препятствовать работе камер видеонаблюдения, датчиков движения и датчиков дыма (закрывать, заклеивать, занавешивать, отключать, сдвигать, менять направление). Это грубое нарушение и основание для немедленного прекращения сессии без возврата внесённой оплаты за услугу и гарантийного платежа.</li>
+        <li>Помещение охраняется ЧОП.</li>
+        <li>В случае нарушений (порча имущества, употребление наркотиков, алкоголь без согласования, драка, вандализм, попытка скрыться с места происшествия и других правонарушений) видеозапись может быть использована для разбирательства, передачи в полицию и взыскания ущерба.</li>
+        <li>Полную материальную и юридическую ответственность за всё происходящее во время оказания услуги несёт лицо, которое забронировало услугу и получило код доступа. При регистрации он подтверждает, что указал свои реальные ФИО и номер телефона. <span class="warn">Предоставление ложных данных является грубым нарушением настоящих Правил.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- СЕКЦИЯ 6 -->
+  <div class="rules-section reveal-ready" id="sec6">
+    <div class="section-number">Раздел 6</div>
+    <h2>Климат и очистка воздуха</h2>
+    <div class="section-line"></div>
+
+    <div class="rule-block">
+      <ul>
+        <li>В помещении установлена современная автоматизированная система кондиционирования и очистки воздуха.</li>
+        <li>Система автоматически стремится поддерживать комфортные параметры:
+          <ul>
+            <li><span class="highlight">Лето:</span> температура около 21,5–23 °C и влажность 45–65 %</li>
+            <li><span class="highlight">Зима:</span> температура около 22–26 °C и влажность 45–60 %</li>
+          </ul>
+        </li>
+        <li>Показатели температуры и влажности могут изменяться в зависимости от количества людей в помещении и их активности. Оборудование автоматически работает на выравнивание условий.</li>
+        <li>Установлен бризер <span class="highlight">ATMEEX Airnanny A7</span>, который постоянно подаёт свежий отфильтрованный воздух с улицы и дополнительно очищает воздух внутри помещения. Менять настройки бризера запрещено.</li>
+        <li>В комнате также работает очиститель воздуха <span class="highlight">Xiaomi Mi Air Purifier 4 Compact</span>.</li>
+        <li>Над диваном установлен вентилятор. Разрешается включать, выключать, менять скорость и режим поворота. Снимать и передвигать его запрещено.</li>
+      </ul>
+    </div>
+
+    <div class="rule-block">
+      <h4>🖥️ Умная панель управления Aqara S1 Plus</h4>
+      <p>На стене с правой стороны дивана установлена умная панель управления <span class="highlight">Aqara S1 Plus</span>, с помощью которой можно:</p>
+      <ul>
+        <li>Принудительно включать и выключать кондиционер.</li>
+        <li>Управлять светодиодной лентой и другими световыми приборами.</li>
+        <li>Просматривать камеру на входе в помещение.</li>
+        <li>Использовать другие доступные в ней удобные функции.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- СЕКЦИЯ 7 -->
+  <div class="rules-section reveal-ready" id="sec7">
+    <div class="section-number">Раздел 7</div>
+    <h2>Уровень громкости</h2>
+    <div class="section-line"></div>
+
+    <div class="rule-block">
+      <ul>
+        <li>В комнате установлено два саундбара: <span class="highlight">Samsung</span> и <span class="highlight">LG</span>.</li>
+        <li>Саундбар Samsung работает с телевизором и PlayStation 5 Pro по оптическому кабелю.</li>
+        <li>Саундбар LG предназначен для подключения смартфона по Bluetooth (своя музыка). Имя устройства в поиске: <span class="highlight">LG S60Q(D7)</span>.</li>
+        <li>Громкость регулируется пультами дистанционного управления. Пульты можно использовать только для регулировки громкости.</li>
+        <li><span class="warn">Запрещено</span> менять любые другие настройки саундбаров, переключать входы, режимы звука и т.д.</li>
+        <li>Пульты хранятся в специальной подставке на журнальном столике. После использования их необходимо возвращать на место. <span class="warn">Вынос пультов из комнаты запрещён и приравнивается к нарушению.</span></li>
+      </ul>
+    </div>
+
+    <div class="rule-block">
+      <h4>🔊 Ограничения громкости</h4>
+      <ul>
+        <li><span class="highlight">Будние дни (пн–пт) с 09:00 до 19:00</span> — громкость не более 50% (из уважения к соседним организациям).</li>
+        <li><span class="highlight">В остальное время</span> (вечер, выходные, ночь) — громкость не более 80%.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- СЕКЦИЯ 8 -->
+  <div class="rules-section reveal-ready" id="sec8">
+    <div class="section-number">Раздел 8</div>
+    <h2>Обувь и одежда</h2>
+    <div class="section-line"></div>
+
+    <div class="rule-block">
+      <ul>
+        <li>Вход в помещение разрешён только <span class="highlight">без уличной обуви</span> (в носках, босиком или в тапочках).</li>
+        <li>Верхнюю уличную одежду рекомендуется снимать.</li>
+        <li>Для вашего удобства есть небольшая раздевалка, где можно повесить верхнюю одежду и оставить обувь. Там же находятся <span class="highlight">6 пар многоразовых тапочек (бесплатно)</span>.</li>
+        <li>Одноразовые тапочки можно приобрести за дополнительную плату <span class="highlight">100 ₽ за пару</span> (при наличии). Оплата производится переводом по СБП по реквизитам, указанным администрацией.</li>
+        <li>Одноразовые тапочки предоставляются только при наличии. При их отсутствии клиент обязан использовать многоразовые тапочки либо находиться в помещении в носках или босиком.</li>
+        <li><span class="warn">Нахождение в помещении с неприятным запахом от ног (в носках или босиком) не допускается.</span></li>
+        <li>Вход и нахождение в уличной обуви запрещены в любом случае, независимо от наличия или отсутствия одноразовых тапочек.</li>
+        <li>Мокрую верхнюю одежду (после дождя, снега и т.д.) оставляйте в раздевалке. Мокрые зонты кладите только в специальную резиновую ёмкость, расположенную на полу у раздевалки или внутри её полок, в сложенном виде. Развешивать и сушить одежду и зонты в помещении запрещено.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- СЕКЦИЯ 9 -->
+  <div class="rules-section reveal-ready" id="sec9">
+    <div class="section-number">Раздел 9</div>
+    <h2>Время начала и окончания сессии</h2>
+    <div class="section-line"></div>
+
+    <div class="rule-block">
+      <ul>
+        <li>Вы получаете код доступа на время бронирования. В отдельных случаях, при длительном бронировании, администрация может выдать карту доступа.</li>
+        <li>Код от двери становится активным <span class="highlight">ровно в указанное время начала</span> бронирования. Зайти в помещение раньше начала оплаченного времени невозможно.</li>
+        <li>При опоздании клиента <span class="warn">время сессии не продлевается и не переносится</span>. Сессия заканчивается в то время, которое было указано при бронировании.</li>
+        <li>Сессия заканчивается автоматически <span class="highlight">за 5 минут до истечения оплаченного времени</span> (телевизор и приставка отключаются).</li>
+        <li>У вас остаётся 5 минут на сборы, уборку за собой, постановку всех геймпадов на зарядку и выход из помещения.</li>
+        <li>Клиент обязан покинуть помещение до окончания оплаченного времени. Просьба покинуть помещение без задержек.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- СЕКЦИЯ 10 -->
+  <div class="rules-section reveal-ready" id="sec10">
+    <div class="section-number">Раздел 10</div>
+    <h2>Техника и оборудование</h2>
+    <div class="section-line"></div>
+
+    <div class="rule-block">
+      <h4>🚫 Строго запрещено</h4>
+      <ul>
+        <li>Трогать, переключать, настраивать или подключать что-либо к телевизору и PlayStation 5 Pro.</li>
+        <li>Подключать зарядки, флешки, кабели и любые другие устройства в USB-порты телевизора и приставки.</li>
+        <li>Самостоятельно удалять игры, дополнения или обновления, а также устанавливать новые игры.</li>
+        <li>Отключать от розеток любое установленное оборудование, переставлять его, менять места подключения и отключать удлинители, блоки питания и кабели. Всё оборудование уже подключено и настроено. Любое отключение или перестановка может нарушить работу системы и приравнивается к вмешательству в оборудование.</li>
+        <li>Двигать ТВ-тумбу у стены под телевизором: через неё проложена проводка, смещение может повредить оборудование.</li>
+      </ul>
+    </div>
+
+    <div class="rule-block">
+      <h4>✅ Разрешено</h4>
+      <ul>
+        <li>Устанавливать дополнения и обновления (DLC) на уже установленные администрацией игры.</li>
+        <li>Клиент может входить в свой аккаунт PSN и устанавливать свои игры только с разрешения технической поддержки. После окончания сессии все сторонние аккаунты и данные должны быть удалены. Мы не несём ответственности за сохранность данных клиента.</li>
+        <li>Использовать розетки, расположенные с правой и левой стороны дивана (по 2 розетки с каждой стороны).</li>
+        <li>Стеклянный журнальный столик по центру помещения двигать можно, после использования его необходимо вернуть на место.</li>
+      </ul>
+    </div>
+
+    <div class="rule-block">
+      <h4>📞 Управление техникой</h4>
+      <ul>
+        <li>Всё управление техникой осуществляется только через техническую поддержку по номеру <span class="highlight">8909-820-31-31</span> (в любом случае).</li>
+      </ul>
+    </div>
+
+    <div class="rule-block">
+      <h4>🔌 Зарядные устройства</h4>
+      <ul>
+        <li>В помещении предусмотрены зарядные устройства для телефонов (разъёмы для Android и iPhone).</li>
+        <li>Зарядки подключены к розеткам и не подлежат выносу из помещения.</li>
+        <li><span class="warn">Вынос зарядных устройств из помещения приравнивается к краже и влечёт штраф + обращение в полицию.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- СЕКЦИЯ 11 -->
+  <div class="rules-section reveal-ready" id="sec11">
+    <div class="section-number">Раздел 11</div>
+    <h2>Техническая поддержка и самообслуживание</h2>
+    <div class="section-line"></div>
+
+    <div class="rule-block">
+      <ul>
+        <li>Услуга PS LAB предоставляется в формате <span class="highlight">самообслуживания</span>. Клиент самостоятельно пользуется игровой приставкой, телевизором и другим оборудованием в рамках разрешённых действий.</li>
+        <li>Мы не несём ответственности за отсутствие у клиента знаний и навыков пользования техникой и играми. Клиент самостоятельно несёт ответственность за умение пользоваться оборудованием и играми.</li>
+        <li>Техническая поддержка по телефону <span class="highlight">8909-820-31-31</span> является бесплатным дополнительным сервисом и предоставляется по возможности. Она не гарантирует решение всех вопросов. За результаты удалённой поддержки мы ответственности не несём.</li>
+        <li>Если клиенту требуется физическая помощь администратора на месте, такая помощь возможна только при наличии свободного администратора и оплачивается отдельно — <span class="highlight">200 ₽ за услугу</span>.</li>
+        <li>После оказания помощи администратор уточняет у клиента, остались ли ещё вопросы. Если вопросов больше нет и клиент это подтверждает, администратор покидает помещение, и услуга считается оказанной.</li>
+        <li>Ожидание технической поддержки и помощь администратора не продлевают оплаченное время сессии.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- СЕКЦИЯ 12 -->
+  <div class="rules-section reveal-ready" id="sec12">
+    <div class="section-number">Раздел 12</div>
+    <h2>Геймпады (джойстики) и гарантийный платёж</h2>
+    <div class="section-line"></div>
+
+    <div class="rule-block">
+      <h4>🎮 Геймпады и зарядные станции</h4>
+      <ul>
+        <li>В помещении находятся <span class="highlight">8 геймпадов</span> и <span class="highlight">4 зарядные станции</span>. 6 геймпадов и 3 станции расположены открыто на тумбе: на каждую станцию ставится по 2 геймпада. Ещё 2 геймпада и 1 станция находятся в резерве внутри тумбы и используются при необходимости: если основной геймпад разрядился, неисправен или возникла другая подобная ситуация.</li>
+        <li>Подмена и вынос геймпадов запрещены и расцениваются как кража. Все геймпады промаркированы специальным способом, серийные номера зафиксированы и тщательно проверяются в обязательном порядке после каждой сессии.</li>
+        <li>По окончании сессии поставьте все геймпады (джойстики) на зарядные станции, закройте помещение и сообщите нам.</li>
+      </ul>
+    </div>
+
+    <div class="rule-block">
+      <h4>💰 Гарантийный платёж</h4>
+      <ul>
+        <li>При бронировании дополнительно к стоимости услуги взимается гарантийный платёж <span class="highlight">500 ₽</span>, который возвращается по запросу клиента после окончания сессии при условии, что помещение оставлено в чистом виде (без мусора, пятен, разлитых напитков и т.д.) и все геймпады поставлены на зарядку.</li>
+        <li>Если возврат гарантийного платежа не запрошен, он остаётся за клиентом бессрочно и может быть использован для последующих бронирований услуги в любое время.</li>
+        <li>При любом загрязнении помещения (даже незначительном или при оставленном мусоре) или если геймпады не поставлены на зарядку — <span class="warn">гарантийный платёж не возвращается</span>. Сумма гарантийного платежа тратится на транспортные расходы и оплату уборщицы/специалиста.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- СЕКЦИЯ 13 -->
+  <div class="rules-section reveal-ready" id="sec13">
+    <div class="section-number">Раздел 13</div>
+    <h2>Система скидок и статусов</h2>
+    <div class="section-line"></div>
+
+    <div class="rule-block">
+      <ul>
+        <li>При упрощённой регистрации клиенту присваивается статус <span class="highlight">Обычный</span>. Постоянная скидка в этом случае не предоставляется.</li>
+        <li>При расширенной регистрации клиенту присваивается статус <span class="highlight">Особый гость</span> и сразу предоставляется постоянная скидка <span class="highlight">10%</span> на все услуги PS LAB. Эти 10% не сгорают.</li>
+        <li>За каждое чистое посещение (помещение оставлено в чистом виде, геймпады поставлены на зарядку) начисляется дополнительная скидка <span class="highlight">+ 1%</span>. Максимальная скидка для статуса Обычный — 10%.</li>
+        <li>Скидка 20% и статус VIP-гость доступны только клиентам, прошедшим расширенную регистрацию.</li>
+        <li>Скидки складываются. Максимальный размер общей скидки — <span class="highlight">20%</span> (расширенная регистрация + 10 чистых посещений).</li>
+      </ul>
+    </div>
+
+    <div class="sub-block">
+      <h5>Пока общая скидка составляет менее 20%</h5>
+      <ul>
+        <li>базовые 10% за расширенную регистрацию сохраняются всегда;</li>
+        <li>накопленные проценты за чистые посещения сгорают, если перерыв между посещениями составил более 3 месяцев.</li>
+      </ul>
+    </div>
+
+    <div class="sub-block">
+      <h5>При достижении скидки 20%</h5>
+      <ul>
+        <li>клиенту присваивается статус VIP-гость;</li>
+        <li>вся скидка становится постоянной и больше не сгорает из-за перерывов между посещениями;</li>
+        <li>клиент получает наивысший приоритет при бронировании;</li>
+        <li>а также другие преимущества, которые могут быть введены администрацией в будущем.</li>
+      </ul>
+    </div>
+
+    <div class="sub-block">
+      <h5>При любом загрязнении помещения или если геймпады не поставлены на зарядку</h5>
+      <ul>
+        <li>гарантийный платёж не возвращается;</li>
+        <li>накопленные проценты за чистые посещения сбрасываются полностью;</li>
+        <li>базовые 10% за расширенную регистрацию сохраняются.</li>
+      </ul>
+    </div>
+
+    <div class="rule-block">
+      <ul>
+        <li>Постоянная скидка 20% и наивысший приоритет при бронировании сохраняются только при условии соблюдения настоящих Правил. В случае нарушений (оставление мусора, порча имущества, грубое поведение и т.д.) администрация вправе снизить или аннулировать скидку и статус Особого гостя / VIP-гостя.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- СЕКЦИЯ 14 -->
+  <div class="rules-section reveal-ready" id="sec14">
+    <div class="section-number">Раздел 14</div>
+    <h2>Ответственность</h2>
+    <div class="section-line"></div>
+
+    <div class="rule-block">
+      <ul>
+        <li>Мы не несём ответственности за забытые или оставленные личные вещи. Найденные вещи хранятся не более 7 дней, после чего могут быть утилизированы.</li>
+        <li>При грубых нарушениях сессия прекращается без возврата внесённой оплаты за услугу. При систематических мелких нарушениях администрация вправе прекратить сессию без возврата внесённой оплаты за услугу и заблокировать возможность последующих бронирований.</li>
+        <li>В случае повреждения или поломки оборудования (джойстики, приставка, телевизор, мебель и т.д.) клиент обязан <span class="warn">возместить стоимость замены имущества</span>. Ремонт по инициативе клиента не производится. Гарантийный платёж в этом случае не возвращается и идёт в счёт возмещения ущерба. Если сумма ущерба превышает размер гарантийного платежа, клиент обязан возместить разницу. При необходимости сумма ущерба может быть взыскана дополнительно в полном объёме.</li>
+      </ul>
+    </div>
+
+    <div class="rule-block">
+      <h4>💵 Определение стоимости ущерба</h4>
+      <p>Стоимость повреждённого или уничтоженного имущества определяется в следующем порядке:</p>
+      <ol>
+        <li>по стоимости, указанной в кассовом или товарном чеке на приобретение данного имущества;</li>
+        <li>при отсутствии чека — по актуальной цене аналогичного оригинального товара, имеющегося в наличии в магазине DNS (ДНС), на дату причинения ущерба;</li>
+        <li>при отсутствии такого товара в наличии в DNS (ДНС) — по цене товара того же производителя с аналогичными или более высокими характеристиками;</li>
+        <li>если товар того же производителя больше не выпускается или отсутствует в продаже — по цене товара другого производителя не ниже классом, с сопоставимыми техническими характеристиками, размерами и качеством исполнения, по выбору администрации.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- СЕКЦИЯ 15 -->
+  <div class="rules-section reveal-ready" id="sec15">
+    <div class="section-number">Раздел 15</div>
+    <h2>Технические сбои</h2>
+    <div class="section-line"></div>
+
+    <div class="rule-block">
+      <h4>⚡ Что считается техническим сбоем?</h4>
+      <p>Под техническим сбоем понимается ситуация, при которой использование игровой приставки и телевизора становится полностью невозможным (отключение электричества, серьёзная поломка оборудования и т.п.).</p>
+      <p><span class="highlight">Отсутствие интернета</span> при сохранении возможности играть в оффлайн-режиме, а также повреждение оборудования по вине клиента техническим сбоем не является.</p>
+    </div>
+
+    <div class="rule-block">
+      <h4>🔄 Правила компенсации</h4>
+      <ul>
+        <li>В случае технических сбоев возврат внесенной оплаты за услугу не производится. Компенсация осуществляется исключительно путём <span class="highlight">переноса неиспользованного времени</span>.</li>
+      </ul>
+    </div>
+
+    <div class="rule-block">
+      <h4>📋 Порядок действий при сбое не по вине клиента</h4>
+      <ul>
+        <li>Клиент может продолжить сессию после устранения проблемы. Если отсутствует следующая бронь — сессия продлевается на время, фактически потраченное на ожидание устранения сбоя.</li>
+        <li>Если из-за следующей брони невозможно продлить сессию на время ожидания, клиент доигрывает доступное время до начала следующей брони. Время, потерянное из-за сбоя, переносится на другую дату.</li>
+        <li>Если сбой длится более 15 минут и клиент не желает продолжать ожидание его устранения, неиспользованное время переносится на другую дату по согласованию с администрацией.</li>
+      </ul>
+    </div>
+
+    <div class="sub-block">
+      <h5>📅 Порядок использования перенесённого времени</h5>
+      <ul>
+        <li>если переносимое время составляет 1 час и более — клиент может использовать его отдельной сессией без дополнительной оплаты;</li>
+        <li>если переносимое время составляет менее 1 часа — оно может быть использовано только в качестве добавки к новой оплаченной сессии.</li>
+      </ul>
+      <p>Перенос времени возможен только при наличии технической возможности и свободных слотов. Решение о переносе принимается администрацией.</p>
+    </div>
+  </div>
+
+  <!-- СЕКЦИЯ 16 -->
+  <div class="rules-section reveal-ready" id="sec16">
+    <div class="section-number">Раздел 16</div>
+    <h2>Перенос и отмена</h2>
+    <div class="section-line"></div>
+
+    <div class="rule-block">
+      <ul>
+        <li><span class="warn">Перенос и отмена забронированной сессии по инициативе клиента не предусмотрены ни при каких обстоятельствах</span> (за исключением случаев, указанных в пункте 15).</li>
+        <li>Возврат денежных средств не производится ни при каких обстоятельствах.</li>
+        <li>Клиент может прийти в любое удобное время в рамках оплаченного слота. Время начала и окончания сессии фиксированное. Опоздание не продлевает и не переносит сессию.</li>
+        <li>Соглашаясь с правилами, вы подтверждаете, что тщательно спланировали своё время перед оплатой. Переносы, отмены бронирования и возвраты внесенной оплаты по инициативе клиента недопустимы, за исключением случаев, указанных в пункте 15.</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <h3>PSLAB</h3>
+  <p>Создано с золотом для настоящих геймеров</p>
+</div>
+
+<!-- SCRIPTS -->
+<script>
+// Scroll Progress
+(function(){
+  var nav=document.querySelector('.nav');
+  if(nav){
+    var bar=document.querySelector('.nav-scroll-progress');
+    if(!bar){
+      bar=document.createElement('div');
+      bar.className='nav-scroll-progress';
+      nav.appendChild(bar);
+    }
+    window.addEventListener('scroll',function(){
+      var st=window.scrollY||document.documentElement.scrollTop;
+      var dh=document.documentElement.scrollHeight-window.innerHeight;
+      bar.style.width=dh>0?(st/dh)*100+'%':'0%';
+    });
+  }
+})();
+
+// Scroll Reveal
+(function(){
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('reveal-show');
+        obs.unobserve(e.target);
+      }
+    });
+  },{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+
+  var els=document.querySelectorAll('.reveal-ready');
+  for(var i=0;i<els.length;i++){
+    obs.observe(els[i]);
+  }
+})();
+
+// Smooth scroll for TOC links
+document.querySelectorAll('.toc a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    e.preventDefault();
+    var target=document.querySelector(this.getAttribute('href'));
+    if(target){
+      target.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+  });
+});
+
+// Cover parallax
+(function(){
+  var cover=document.querySelector('.cover');
+  var ct=document.querySelector('.cover-content');
+  if(cover&&ct){
+    window.addEventListener('scroll',function(){
+      var sy=window.scrollY||document.documentElement.scrollTop;
+      if(sy>window.innerHeight)return;
+      ct.style.transform='translateY('+(sy*0.35)+'px';
+      ct.style.opacity=Math.max(0,1-sy/window.innerHeight*1.3);
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
