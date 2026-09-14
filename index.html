@@ -249,13 +249,43 @@
     0%, 100% { box-shadow: 0 0 0 0 rgba(212,168,67,0.4); }
     50% { box-shadow: 0 0 0 10px rgba(212,168,67,0); }
   }
+
+  /* ============ ГАЛЕРЕЯ ИНТЕРЬЕРА ============ */
+  .interior-section{max-width:1200px;margin:0 auto;padding:0 30px 40px}
+  .interior-hint{text-align:center;color:#666;font-size:12px;letter-spacing:1px;max-width:700px;margin:-30px auto 40px;line-height:1.8}
+  .interior-hint code{color:var(--gold);background:rgba(212,168,67,.08);padding:2px 6px;border-radius:4px}
+  .interior-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+  .interior-card{position:relative;border-radius:14px;overflow:hidden;border:1px solid rgba(212,168,67,.15);cursor:pointer;aspect-ratio:4/3;background:#111;transition:all .35s cubic-bezier(.25,.8,.25,1.2)}
+  .interior-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.6),0 0 26px rgba(212,168,67,.15);border-color:rgba(212,168,67,.45)}
+  .interior-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+  .interior-card:hover img{transform:scale(1.06)}
+  .interior-card .ilb-cap{position:absolute;left:0;right:0;bottom:0;padding:24px 14px 10px;background:linear-gradient(transparent,rgba(0,0,0,.85));color:#fff;font-size:12px;letter-spacing:2px;text-transform:uppercase}
+  .interior-empty{grid-column:1/-1;text-align:center;color:#666;padding:50px 20px;border:1px dashed rgba(212,168,67,.25);border-radius:14px;font-size:14px;line-height:1.9}
+  .interior-empty code{color:#d4a843;background:rgba(212,168,67,.08);padding:1px 6px;border-radius:4px}
+  .ilb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:400;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(10px)}
+  .ilb-overlay.active{display:flex}
+  .ilb-box{position:relative;max-width:1000px;width:100%;text-align:center}
+  .ilb-stage{position:relative;border-radius:16px;overflow:hidden;border:1px solid rgba(212,168,67,.3);max-height:72vh;background:#000}
+  .ilb-stage img{width:100%;max-height:72vh;object-fit:contain;display:block}
+  .ilb-close{position:absolute;top:-14px;right:-14px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(212,168,67,.4);background:rgba(0,0,0,.85);color:var(--gold);font-size:22px;cursor:pointer;z-index:10;transition:all .3s}
+  .ilb-close:hover{background:var(--gold);color:#000;transform:scale(1.1)}
+  .ilb-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:1px solid rgba(212,168,67,.35);background:rgba(0,0,0,.7);color:var(--gold);font-size:18px;cursor:pointer;z-index:10;transition:all .3s}
+  .ilb-nav:hover{background:var(--gold);color:#000}
+  .ilb-prev{left:-14px}.ilb-next{right:-14px}
+  .ilb-counter{color:var(--gold);font-size:13px;letter-spacing:3px;margin-top:14px}
+  .ilb-thumbs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+  .ilb-thumb{width:64px;height:48px;border-radius:6px;overflow:hidden;border:2px solid transparent;cursor:pointer;opacity:.55;transition:all .25s}
+  .ilb-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .ilb-thumb.active{opacity:1;border-color:var(--gold)}
+  .ilb-thumb:hover{opacity:.85}
 </style>
 </head>
 <body>
 
-<div class="cover"><div class="cover-content"><div class="cover-brand">PSLAB NOLAG</div><div class="cover-ps5">◆ PlayStation 5 PRO ◆</div><h1><span class="small">Библиотека</span>игр</h1><div class="cover-divider"></div><div class="cover-meta"><span onclick="window.open('https://yandex.ru/maps/76/khabarovsk/house/vladivostokskaya_ulitsa_18/ZUoDaAdoSEEGXkJua2J1eHxqZwk=/?ll=135.081412%2C48.490931&z=17/','_blank')" style="cursor:pointer" title="Открыть Яндекс.Карты">📍 Владивостокская 18</span><a href="price.html" class="cover-price-btn" title="Прайс-лист">💰 Прайс</a><a href="rules.html" class="cover-price-btn" title="Правила оказания услуг">📜 Правила</a><span onclick="scrollToGames()" style="cursor:pointer" title="К списку игр">🎮 Каталог ИГР</span></div></div></div>
+<div class="cover"><div class="cover-content"><div class="cover-brand">PSLAB NOLAG</div><div class="cover-ps5">◆ PlayStation 5 PRO ◆</div><h1><span class="small">Библиотека</span>игр</h1><div class="cover-divider"></div><div class="cover-meta"><span onclick="window.open('https://yandex.ru/maps/76/khabarovsk/house/vladivostokskaya_ulitsa_18/ZUoDaAdoSEEGXkJua2J1eHxqZwk=/?ll=135.081412%2C48.490931&z=17/','_blank')" style="cursor:pointer" title="Открыть Яндекс.Карты">📍 Владивостокская 18</span><a href="price.html" class="cover-price-btn" title="Прайс-лист">💰 Прайс</a><a href="rules.html" class="cover-price-btn" title="Правила оказания услуг">📜 Правила</a><span onclick="scrollToInterior()" style="cursor:pointer" title="Галерея интерьера">📷 Интерьер</span><span onclick="scrollToGames()" style="cursor:pointer" title="К списку игр">🎮 Каталог ИГР</span></div></div></div>
 
 <div class="nav"><div class="nav-brand">🏆 PSLAB NOLAG</div><div class="nav-links"><a href="#cat-sport">⚽ Спорт</a><a href="#cat-race">🏎️ Гонки</a><a href="#cat-action">💥 Экшены</a><a href="#cat-fighting">🥊 Файтинги</a><a href="#cat-indie">🎨 Инди</a><a href="#cat-coop">🤝 Кооператив</a><a href="#cat-horror">👻 Хорроры</a><a href="#cat-family">👪 Семейные</a>
+    <a href="#interior-section" style="color:#f0d78c;">📷 Интерьер</a>
     <a href="price.html" style="color:#f0d78c;">💰 Прайс</a>
     <a href="rules.html" style="color:#f0d78c;">📜 Правила</a></div></div>
 
@@ -299,6 +329,23 @@
 <div class="modal-overlay" id="modal-overlay"><div class="modal" id="modal-content"></div></div>
 <div class="games-container"></div>
 
+
+<div class="interior-section" id="interior-section">
+  <div class="section-header"><div class="cat-icon">📷</div><h2>Интерьер</h2><div class="divider"></div><div class="count" id="interior-count">0 фото</div></div>
+  <p class="interior-hint">Фотографии нашего клуба.</p>
+  <div class="interior-grid" id="interior-grid"></div>
+</div>
+
+<div class="ilb-overlay" id="interior-overlay" onclick="if(event.target===this)closeInterior()">
+  <div class="ilb-box">
+    <button class="ilb-close" onclick="closeInterior()">✕</button>
+    <button class="ilb-nav ilb-prev" onclick="prevInterior()">◀</button>
+    <div class="ilb-stage"><img id="ilb-img" src="" alt="Фото интерьера"></div>
+    <button class="ilb-nav ilb-next" onclick="nextInterior()">▶</button>
+    <div class="ilb-counter" id="ilb-counter"></div>
+    <div class="ilb-thumbs" id="ilb-thumbs"></div>
+  </div>
+</div>
 <div class="footer"><h3>PSLAB NOLAG</h3><p>Создано с золотом для настоящих геймеров</p></div>
 
 <script>
@@ -2650,11 +2697,97 @@ function closeModal(){document.getElementById('modal-overlay').classList.remove(
 function openEntranceModal(){document.getElementById('entrance-modal').classList.add('active');document.body.style.overflow='hidden';}function closeEntranceModal(){document.getElementById('entrance-modal').classList.remove('active');document.body.style.overflow='';}function scrollToFilters(){document.getElementById('fbar').scrollIntoView({behavior:'smooth',block:'start'});}
 function scrollToGames(){document.querySelector('.games-container').scrollIntoView({behavior:'smooth',block:'start'});}document.addEventListener('DOMContentLoaded',function(){
   initFilters();
-  buildCards();initAllAnimations();var em=document.getElementById('entrance-modal');if(em){em.addEventListener('click',function(e){if(e.target===this)closeEntranceModal();});}
+  buildCards();buildInterior();initAllAnimations();var em=document.getElementById('entrance-modal');if(em){em.addEventListener('click',function(e){if(e.target===this)closeEntranceModal();});}
   document.getElementById('modal-overlay').addEventListener('click',function(e){if(e.target===this)closeModal();});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal();if(document.getElementById('entrance-modal').classList.contains('active'))closeEntranceModal();}if(e.key==='ArrowLeft'){e.preventDefault();prevSS();}if(e.key==='ArrowRight'){e.preventDefault();nextSS();}});
+  document.addEventListener('keydown',function(e){var io=document.getElementById('interior-overlay');if(io&&io.classList.contains('active')){if(e.key==='Escape'){closeInterior();return;}if(e.key==='ArrowLeft'){e.preventDefault();prevInterior();return;}if(e.key==='ArrowRight'){e.preventDefault();nextInterior();return;}}if(e.key==='Escape'){closeModal();if(document.getElementById('entrance-modal').classList.contains('active'))closeEntranceModal();}if(e.key==='ArrowLeft'){e.preventDefault();prevSS();}if(e.key==='ArrowRight'){e.preventDefault();nextSS();}});
 });
 
+
+
+// ============ ГАЛЕРЕЯ ИНТЕРЬЕРА ============
+var _interior=[];var _ilbIdx=0;
+var _interiorExt=['.jpg','.jpeg','.png'];
+function buildInterior(){
+  var grid=document.getElementById('interior-grid');
+  if(!grid)return;
+  _interior=[];
+  for(var n=1;n<=200;n++){
+    for(var e=0;e<_interiorExt.length;e++){
+      _interior.push('images/interior_'+n+_interiorExt[e]);
+    }
+  }
+  var countEl=document.getElementById('interior-count');
+  if(countEl)countEl.textContent='0 фото';
+  for(var i=0;i<_interior.length;i++){
+    (function(src){
+      var im=new Image();
+      im.onload=function(){renderInteriorThumb(src);};
+      im.src=src;
+    })(_interior[i]);
+  }
+  setTimeout(function(){
+    var g2=document.getElementById('interior-grid');
+    if(g2&&g2.children.length===0){
+      g2.innerHTML='<div class="interior-empty">📷 Пока нет фотографий интерьера.<br>Загрузите файлы <code>images/interior_1.jpg</code>, <code>images/interior_2.jpg</code> … и обновите страницу.</div>';
+    }
+  },700);
+}
+function renderInteriorThumb(src){
+  var grid=document.getElementById('interior-grid');
+  if(!grid)return;
+  var empty=grid.querySelector('.interior-empty');
+  if(empty)empty.remove();
+  var m=src.match(/interior_(\d+)/);
+  var realIdx=m?parseInt(m[1],10)-1:0;
+  var card=document.createElement('div');
+  card.className='interior-card';
+  card.setAttribute('data-ii',realIdx);
+card.innerHTML='<img src="'+src+'" alt="Фото интерьера '+(realIdx+1)+'" loading="lazy" />';
+  card.onclick=function(){openInterior(realIdx);};
+  grid.appendChild(card);
+  sortInteriorGrid();
+  var countEl=document.getElementById('interior-count');
+  if(countEl)countEl.textContent=grid.children.length+' фото';
+}
+function sortInteriorGrid(){
+  var grid=document.getElementById('interior-grid');
+  if(!grid)return;
+  var cards=[].slice.call(grid.querySelectorAll('.interior-card'));
+  cards.sort(function(a,b){return parseInt(a.getAttribute('data-ii'),10)-parseInt(b.getAttribute('data-ii'),10);});
+  cards.forEach(function(c){grid.appendChild(c);});
+}
+function openInterior(idx){
+  var loaded=[];
+  var grid=document.getElementById('interior-grid');
+  if(grid){
+    var cards=grid.querySelectorAll('.interior-card');
+    for(var i=0;i<cards.length;i++)loaded.push(cards[i].querySelector('img').src);
+  }
+  if(!loaded.length)return;
+  _interior=loaded;
+  if(idx<0||idx>=loaded.length)idx=0;
+  _ilbIdx=idx;
+  renderLightbox();
+  document.getElementById('interior-overlay').classList.add('active');
+  document.body.style.overflow='hidden';
+}
+function renderLightbox(){
+  var img=document.getElementById('ilb-img');
+  var ctr=document.getElementById('ilb-counter');
+  var th=document.getElementById('ilb-thumbs');
+  if(!img||!_interior.length)return;
+  img.src=_interior[_ilbIdx];
+  ctr.textContent=(_ilbIdx+1)+' / '+_interior.length;
+  var h='';
+  for(var i=0;i<_interior.length;i++){
+    h+='<div class="ilb-thumb'+(i===_ilbIdx?' active':'')+'" onclick="openInterior('+i+')"><img src="'+_interior[i]+'" alt=""></div>';
+  }
+  th.innerHTML=h;
+}
+function prevInterior(){if(_ilbIdx>0){_ilbIdx--;renderLightbox();}}
+function nextInterior(){if(_ilbIdx<_interior.length-1){_ilbIdx++;renderLightbox();}}
+function closeInterior(){document.getElementById('interior-overlay').classList.remove('active');document.body.style.overflow='';}
+function scrollToInterior(){var el=document.getElementById('interior-section');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}
 
 // ============ АНИМАЦИИ JS ============
 
